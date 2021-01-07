@@ -1,0 +1,17 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#321325</item>
+        <item name="colorPrimaryDark">#321325</item>
+        <item name="colorAccent">#CA054D</item>
+    </style>
+
+    <style name="TimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#FFFFFF</item>
+        <item name="colorAccent">#FFFF</item>
+        <item name="android:textColorPrimary">#CA054D</item>
+        <item name="android:colorForeground">#CA054D</item>
+    </style>
+</resources>
