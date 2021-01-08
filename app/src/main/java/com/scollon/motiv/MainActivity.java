@@ -12,6 +12,7 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Long mTimeLeftInMillis;
     private Long StopTimeLeftInMillis;
     Button start, stop;
+    ImageView iv_time;
     TextView tv, tv_h, tv_m, tv_s;
     TimePicker timePicker;
     CountDownTimer timer;
@@ -38,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
         final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM));
         timePicker.setIs24HourView(true);
         stop.setVisibility(View.GONE);
-
+        iv_time = findViewById(R.id.iv_time);
         timePicker.setHour(0);
-        timePicker.setMinute(15);
+        timePicker.setMinute(30);
 
         start.setText("play");
 
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 long millisHrs = Long.parseLong(String.valueOf(hrs)) * 3600000;
                 long millisMin = Long.parseLong(String.valueOf(min)) * 60000;
                 long millisInput = millisHrs + millisMin;
-
+                iv_time.animate().rotation(360).setDuration(millisInput);
                         startTimer(millisInput);
                         start.setVisibility(View.GONE);
                         stop.setVisibility(View.VISIBLE);
