@@ -4,15 +4,18 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
+import android.graphics.PorterDuff;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -24,10 +27,11 @@ public class MainActivity extends AppCompatActivity {
     private Long StopTimeLeftInMillis;
     Button start, stop;
     ImageView iv_time;
+    Spinner spinner;
     TextView tv, tv_h, tv_m, tv_s;
     TimePicker timePicker;
     CountDownTimer timer;
-
+String[] muzyka = {"sea", "meditation"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +44,16 @@ public class MainActivity extends AppCompatActivity {
         final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM));
         timePicker.setIs24HourView(true);
         stop.setVisibility(View.GONE);
+        spinner  = findViewById(R.id.spinner);
         iv_time = findViewById(R.id.iv_time);
         timePicker.setHour(0);
         timePicker.setMinute(30);
+
+        spinner.getBackground().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.white, muzyka);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
 
         start.setText("play");
 
