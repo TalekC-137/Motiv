@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
 import android.graphics.PorterDuff;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.os.Build;
@@ -41,7 +42,10 @@ String[] muzyka = {"sea", "meditation"};
         start =findViewById(R.id.button);
         timePicker = findViewById(R.id.timePicker);
         tv_m = findViewById(R.id.tv_m);
-        final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM));
+       // final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM));
+        final MediaPlayer ring= MediaPlayer.create(MainActivity.this,R.raw.zen);
+        ring.isLooping();
+
         timePicker.setIs24HourView(true);
         stop.setVisibility(View.GONE);
         spinner  = findViewById(R.id.spinner);
@@ -62,6 +66,7 @@ String[] muzyka = {"sea", "meditation"};
             @Override
             public void onClick(View v) {
 
+                ring.start();
               Integer hrs = timePicker.getHour();
                 Integer min = timePicker.getMinute();
 
@@ -83,7 +88,7 @@ String[] muzyka = {"sea", "meditation"};
 
                 StopTimeLeftInMillis = mTimeLeftInMillis;
             timer.cancel();
-                r.stop();
+                ring.stop();
 
                 start.setVisibility(View.VISIBLE);
                 stop.setVisibility(View.GONE);
